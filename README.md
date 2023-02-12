@@ -1,1 +1,1 @@
-### Infinito Labs
+### 2Fa wallet
