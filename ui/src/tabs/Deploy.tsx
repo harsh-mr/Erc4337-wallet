@@ -63,7 +63,7 @@ export default function Deploy() {
           textAlign: "center",
         }}
       >
-        Rescue Your <span style={{ color: "#EF14A9" }}>Ethereum Tokens</span> &{" "}
+       Transfer Your <span style={{ color: "#EF14A9" }}>Ethereum Tokens</span> &{" "}
         <span style={{ color: "#EF14A9" }}>Nfts</span>
       </Typography>
       <Typography
@@ -75,7 +75,7 @@ export default function Deploy() {
           textAlign: "center",
         }}
       >
-        From <span style={{ color: "#EF14A9" }}>Compromised</span> Accounts
+        Safely <span style={{ color: "#EF14A9" }}>With 2FA Verifcation</span> via your SCW
       </Typography>
       <Typography
         sx={{
@@ -87,7 +87,7 @@ export default function Deploy() {
           my: 4,
         }}
       >
-        Beat the sweeper bot on your account and rescue assets Instantly
+        The perfect WEB 3.0 wallet for your ETH, ERC20, ERC721 and ERC1155
       </Typography>
       <Box sx={{ textAlign: "center" }}>
         <Button

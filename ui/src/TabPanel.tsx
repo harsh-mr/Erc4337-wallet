@@ -12,6 +12,8 @@ interface TabPanelProps {
   value: number;
 }
 
+
+
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
   
@@ -48,18 +50,26 @@ export default function BasicTabs() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ borderBottom: 1, borderColor: '' }}>
         <Tabs 
         value={value} 
         onChange={handleChange} 
-        variant="scrollable"
-        scrollButtons="auto"
-        allowScrollButtonsMobile={true}
-        aria-label="scrollable auto tabs example"
+        indicatorColor={"secondary"}
+        textColor={"secondary"}
+        style={{ display: "flex", justifyContent: "center" }}
+
+        // variant="scrollable"
+        // scrollButtons="auto"
+        // allowScrollButtonsMobile={true}
+        // aria-label="scrollable auto tabs example"
+        centered
         >
-          <Tab label="Infinito Labs" {...a11yProps(0)} disabled />
-          <Tab label="Deploy" {...a11yProps(1)} />
-          <Tab label="Send Asset" {...a11yProps(2)} />
+         
+          <Tab style={{ marginLeft: '-6%' }} label={<div style={{display:'flex'}}><span style={{ fontWeight:'bold' ,color: 'rgb(239, 20, 169)',    fontFamily: 'PatsySans'
+    ,fontSize: '228%'}}>ETH</span> <span style={{ fontWeight:'bold' ,color: 'white',    fontFamily: 'PatsySans'
+    ,fontSize: '228%'}}>-Wallet</span> </div>} {...a11yProps(0)} disabled />
+          <Tab style={{ marginLeft: '52%' }}label={<span style={{ color: 'white' }}>Deploy wallet</span>} {...a11yProps(1)} />
+          <Tab label={<span style={{ color: 'white' }}>Send Funds</span>} {...a11yProps(2)} />
         </Tabs>
       </Box>
       {/* <TabPanel value={value} index={1}>

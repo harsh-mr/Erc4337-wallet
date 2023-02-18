@@ -9,8 +9,8 @@ import {ethers} from 'ethers'
 
 import vrf  from './artifacts/vrf.json'
 
-const urlPrefix = "otpauth://totp/Mumbai Testnet?secret=";
-const urlSuffix = "&issuer=InfinitoLabs";
+const urlPrefix = "otpauth://totp/-goerli?secret=";
+const urlSuffix = "&issuer==ETH-wallet";
 
 const VRF_ADDRESS = "0x72B47B0450F10D5Bca027C992DC16f144c84819C"
 

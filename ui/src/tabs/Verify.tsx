@@ -241,7 +241,12 @@ export default function Verify() {
           background: "rgba(29,8,71,0.5)",
         }}
       >
-        <Box sx={{ my: 4 }}>
+        <Box sx={{ my: 4 }}
+            component="form"
+            noValidate
+            autoComplete="off"
+            textAlign="center"
+        >
           <Typography
             sx={{ color: "#FFF", my: 5, fontFamily: "PatsySans" }}
           >
@@ -256,13 +261,27 @@ export default function Verify() {
               my: 3,
             }}
           >
-            <input  id="input-otp"
+            {/* <input  id="input-otp"
                  type="number"
                
                 
                 onKeyDown={keyHandler}
                 onChange={aHandler}
-                onKeyPress={enterHandler} className="custom-search-input-2" />
+                onKeyPress={enterHandler} className="custom-search-input-2" /> */}
+
+                <TextField
+                id="input-otp"
+                // label="otp"
+                type="number"
+                // InputLabelProps={{
+                //     shrink: true,
+                // }}
+                sx={{ input: { color: 'white' } }}
+                onKeyDown={keyHandler}
+                onChange={aHandler}
+                onKeyPress={enterHandler}
+                className="custom-search-input-2"
+            />
           </Box>
 
 
@@ -281,14 +300,29 @@ export default function Verify() {
                 my: 3,
               }}
             >
-              <input 
+              {/* <input 
               id="input-amount"
                      
               type="string"
              
               onChange={amountHandler}
               onKeyPress={enterHandler}
-               className="custom-search-input-2" />
+               className="custom-search-input-2" /> */}
+
+              <TextField
+                id="input-amount"
+                // label="amount"
+                type="string"
+                // InputLabelProps={{
+                //     shrink: true,
+                // }}
+                // variant="standard"
+                sx={{ input: { color: 'white' } }}
+                onChange={amountHandler}
+                onKeyPress={enterHandler}
+                className="custom-search-input-2"
+            />
+
             </Box>
             <Box sx={{ my: 4 }}>
               <Typography
@@ -305,7 +339,7 @@ export default function Verify() {
                   my: 3,
                 }}
               >
-                <input  
+                {/* <input  
                  id="input-recepient"
                         
                          type="string"
@@ -314,8 +348,23 @@ export default function Verify() {
                          onKeyDown={keyHandler}
                          onChange={recepientHandler}
                          onKeyPress={enterHandler}
-                className="custom-search-input-2" />
+                className="custom-search-input-2" /> */}
 
+
+               <TextField
+                id="input-recepient"
+                // label="recepient"
+                type="string"
+                sx={{ input: { color: 'white' } }}
+                // InputLabelProps={{
+                //     shrink: true,
+                // }}
+                // variant="filled"
+                onKeyDown={keyHandler}
+                onChange={recepientHandler}
+                onKeyPress={enterHandler}
+                className="custom-search-input-2"
+            />
 
 
               </Box>

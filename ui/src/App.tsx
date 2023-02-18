@@ -7,6 +7,7 @@ import "./App.css";
 import { Route, Router } from "react-router-dom";
 import Home from "./pages/Home";
 import Transfer from "./pages/Transfer";
+import Navbar from "./components/Navbar";
 
 
 const darkTheme = createTheme({
@@ -30,6 +31,7 @@ export default function App() {
         <>
           
             {/* <CssBaseline /> */}
+            {/* <Navbar/> */}
             <BasicTabs />
             <WalletConnector />
         </>
