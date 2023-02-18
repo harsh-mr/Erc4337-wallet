@@ -1,10 +1,16 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { render } from "react-dom";
+import { AuthProvider } from "@arcana/auth";
+import { ProvideAuth } from "@arcana/auth-react";
 import App from './App';
 
+const appAddress = "f162a4f56924d1c356c05266b09ddb76500d6da9"
+const provider = new AuthProvider(`${appAddress}`) // required
 render(
-  <App />,
+  <ProvideAuth provider={provider}>
+    <App />,
+  </ProvideAuth>,
   document.getElementById("root")
 );
 
