@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* font-family: 'Montserrat', sans-serif; */
+
+@font-face {
+    font-family: "PatsySans";   /*Can be any text*/
+    src: local("PatsySans"),
+      url("./assets/fonts/PatsySans.otf") format("truetype");
+  }
+
+
+.gradient-border {
+  position: relative;
+  /* padding: 15px 20px; */
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50px; 
+  border: 2px solid transparent;
+  background:linear-gradient(0deg, #BE14EC, #EF14A9) border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+
+.custom-search {
+  position: relative;
+  width: 900px;
+  left: 90px;
+}
+
+.custom-search-input {
+  width: 100%;
+  border-radius: 100px;
+  padding: 10px 10px 10px 30px;
+  border: double 1px transparent;
+  background-image: linear-gradient(#150633, #150633), 
+                    linear-gradient(0deg, #BE14EC, #EF14A9);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-sizing: border-box;
+  line-height: 1;
+  color: #FFF;
+  height: 75px;
+  font-size: 17px;
+  font-family: 'Montserrat';
+}
+
+/* .custom-search-input:focus {
+  border: double 1px transparent;
+  background-image: linear-gradient(#150633, #150633), 
+                    linear-gradient(0deg, #BE14EC, #EF14A9);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-sizing: border-box;
+} */
+
+.custom-search-botton {
+  position: absolute;
+  left: -185px;
+  z-index: 2;
+}
+
+.gradient-border2 {
+  position: relative;
+  /* padding: 15px 20px; */
+}
+
+.gradient-border2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px; 
+  border: 1px solid transparent;
+  background:linear-gradient(0deg, #BE14EC, #EF14A9) border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+
+
+.root {
+  width: 80vw;
+}
+
+
+/* Scroll Bar */
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #be14ec;
+  border: 0px none #ffffff;
+  border-radius: 14px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #be14ec;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #be14ec;
+}
+::-webkit-scrollbar-track {
+  background: #150633;
+  border: 0px none #ffffff;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #150633;
+}
+::-webkit-scrollbar-track:active {
+  background: #150633;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Scroll Bar */
+
+
+.custom-search-2 {
+  position: relative;
+}
+
+.custom-search-input-2 {
+  border: double 1px transparent;
+  border-radius: 100px;
+  background-image: linear-gradient(#150633, #150633), 
+                    linear-gradient(90deg, #BE14EC, #EF14A9);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  width: 100vw;
+  padding: 10px 10px 10px 30px; 
+  line-height: 1;
+  box-sizing: border-box;
+  color: #FFF;
+  height: 60px;
+  font-size: 17px;
+  font-family: 'Montserrat';
+}
+
+.custom-search-input-2:active {
+  border: none;
+}

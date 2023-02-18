@@ -148,9 +148,10 @@ export default function Verify() {
             console.log("yes: ", event.target.value);
             setRecepientDisable(false);
         } else {
-            let isEns: any  = await checkIsEns(event.target.value)
-            console.log("valid ens: ", isEns);
-            setRecepient(isEns);
+            // let isEns: any  = await checkIsEns(event.target.value)
+            // console.log("valid ens: ", isEns);
+            // setRecepient(isEns);
+            setRecepient(event.target.value);
             setRecepientDisable(true);
         }
     };
@@ -169,64 +170,212 @@ export default function Verify() {
     };
 
     return (
-        <Box
-            component="form"
+        // <Box
+        //     component="form"
+        //     sx={{
+        //         "& .MuiTextField-root": { m: 1, width: "25ch" },
+        //         width: "99%", maxWidth: 600, margin: 'auto'
+        //     }}
+        //     noValidate
+        //     autoComplete="off"
+        //     textAlign="center"
+        // >
+        //     <TextField
+        //         id="input-otp"
+        //         label="otp"
+        //         type="number"
+        //         InputLabelProps={{
+        //             shrink: true,
+        //         }}
+        //         variant="filled"
+        //         onKeyDown={keyHandler}
+        //         onChange={aHandler}
+        //         onKeyPress={enterHandler}
+        //     /><br />
+        //     <TextField
+        //         id="input-amount"
+        //         label="amount"
+        //         type="string"
+        //         InputLabelProps={{
+        //             shrink: true,
+        //         }}
+        //         variant="standard"
+        //         onChange={amountHandler}
+        //         onKeyPress={enterHandler}
+        //     /><br />
+        //     <TextField
+        //         id="input-recepient"
+        //         label="recepient"
+        //         // type="string"
+        //         InputLabelProps={{
+        //             shrink: true,
+        //         }}
+        //         variant="filled"
+        //         onKeyDown={keyHandler}
+        //         onChange={recepientHandler}
+        //         onKeyPress={enterHandler}
+        //     /><br />
+            
+        //     <Button
+        //         onClick={naiveProve}
+        //         disabled={otpDisable}
+        //         variant="contained">
+        //         Verify and Send
+        //     </Button>
+            
+        //     <br /><br />
+        //     {Verifying ? <Loading text="Verifying proof..." /> : <div />}
+        //     {error ? <Alert severity="error" sx={{ textAlign: "left" }}>{errorMsg}</Alert> : <div />}
+        //     {success ? <Typography>Please check your scw for confirmation {scwAddress}</Typography> : <div />}
+        //     {success ? <Typography>Tx hash: {confirmation}</Typography> : <div />}
+        // </Box>
+
+        <Box sx={{ px: 12, py: 3, mb: 8 }}>
+      <Box
+        className="gradient-border2"
+        sx={{
+          px: 4,
+          py: 4,
+          borderRadius: "20px",
+          mx: 6,
+          background: "rgba(29,8,71,0.5)",
+        }}
+      >
+        <Box sx={{ my: 4 }}>
+          <Typography
+            sx={{ color: "#FFF", my: 5, fontFamily: "PatsySans" }}
+          >
+            Enter your OTP
+          </Typography>
+          <Box
+            className="custom-search-2"
             sx={{
-                "& .MuiTextField-root": { m: 1, width: "25ch" },
-                width: "99%", maxWidth: 600, margin: 'auto'
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              my: 3,
             }}
-            noValidate
-            autoComplete="off"
-            textAlign="center"
-        >
-            <TextField
-                id="input-otp"
-                label="otp"
-                type="number"
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                variant="filled"
+          >
+            <input  id="input-otp"
+                 type="number"
+               
+                
                 onKeyDown={keyHandler}
                 onChange={aHandler}
-                onKeyPress={enterHandler}
-            /><br />
-            <TextField
-                id="input-amount"
-                label="amount"
-                type="string"
-                InputLabelProps={{
-                    shrink: true,
+                onKeyPress={enterHandler} className="custom-search-input-2" />
+          </Box>
+
+
+          <Box sx={{ my: 4 }}>
+            <Typography
+                sx={{ color: "#FFF", my: 5, fontFamily: "PatsySans" }}
+            >
+              Enter Amount
+            </Typography>
+            <Box
+              className="custom-search-2"
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                my: 3,
+              }}
+            >
+              <input 
+              id="input-amount"
+                     
+              type="string"
+             
+              onChange={amountHandler}
+              onKeyPress={enterHandler}
+               className="custom-search-input-2" />
+            </Box>
+            <Box sx={{ my: 4 }}>
+              <Typography
+                    sx={{ color: "#FFF", my: 5, fontFamily: "PatsySans" }}
+              >
+                Enter Recepient Address
+              </Typography>
+              <Box
+                className="custom-search-2"
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  my: 3,
                 }}
-                variant="standard"
-                onChange={amountHandler}
-                onKeyPress={enterHandler}
-            /><br />
-            <TextField
-                id="input-recepient"
-                label="recepient"
-                // type="string"
-                InputLabelProps={{
-                    shrink: true,
+              >
+                <input  
+                 id="input-recepient"
+                        
+                         type="string"
+                         
+                       
+                         onKeyDown={keyHandler}
+                         onChange={recepientHandler}
+                         onKeyPress={enterHandler}
+                className="custom-search-input-2" />
+
+
+
+              </Box>
+              <Button
+                sx={{
+                  borderRadius: "40px",
+                  width: "100%",
+                  textTransform: "none",
+                  fontFamily: "Montserrat",
+                  color: "#FFF",
+                  backgroundImage: "linear-gradient(90deg, #E814B2, #E814B2)",
+                  py: 2,
                 }}
-                variant="filled"
-                onKeyDown={keyHandler}
-                onChange={recepientHandler}
-                onKeyPress={enterHandler}
-            /><br />
-            
-            <Button
                 onClick={naiveProve}
                 disabled={otpDisable}
-                variant="contained">
+              >
                 Verify and Send
-            </Button>
-            
-            <br /><br />
-            {Verifying ? <Loading text="Verifying proof..." /> : <div />}
-            {error ? <Alert severity="error" sx={{ textAlign: "left" }}>{errorMsg}</Alert> : <div />}
-            {success ? <Typography>Please check your scw for confirmation {scwAddress}</Typography> : <div />}
-            {success ? <Typography>Tx hash: {confirmation}</Typography> : <div />}
+              </Button>
+            </Box>
+          </Box>
         </Box>
+
+
+        {Verifying ? <Loading text="Verifying proof..." /> : <div />}
+        {error ? <Alert severity="error" sx={{ textAlign: "left" }}>{errorMsg}</Alert> : <div />}
+
+        
+        <Box>
+          <Typography
+            sx={{
+              fontFamily: "Montserrat",
+              color: "#FFF",
+              textAlign: "center",
+            }}
+          >
+    {success ? <Typography>Please check your scw for confirmation {scwAddress}</Typography> : <div />}
+
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Montserrat",
+              color: "#FFF",
+              textAlign: "center",
+              py: 1,
+            }}
+          >
+           {success ? <Typography>TXN hash</Typography> : <div />}
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Montserrat",
+              color: "#FFF",
+              textAlign: "center",
+            }}
+          >
+           {success ? <Typography>{confirmation}</Typography> : <div />}
+
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
     );
 }
