@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@mui/material": "^5.11.9",
+    "@polywrap/client-js": "^0.9.6",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1"
   }
