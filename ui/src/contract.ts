@@ -26,7 +26,7 @@ const MY_WALLET_DEPLOYER = address.MyWalletDeployer
 
 const providerConfig = {
   entryPointAddress: ENTRYPOINT_ADDR,
-  bundlerUrl: 'http://localhost:8000/rpc',
+  bundlerUrl: 'http://localhost:80/rpc',
 }
 
 export async function connectContract(addr: string) {

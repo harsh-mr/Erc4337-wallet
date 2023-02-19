@@ -52,8 +52,10 @@ export default function Deploy() {
         
            
         
-        
-            <Box sx={{ px: 12, py: 9 }}>
+      
+      <Box sx={{ px: 12, py: 9 }}>
+      {!deployed &&  
+      <div>
       <Typography
         variant="h1"
         sx={{
@@ -129,14 +131,37 @@ export default function Deploy() {
           fontSize: "0.8rem",
         }}
       ></i>
+      </div>
 
+      }
+
+{deployed ? <figure><img style={{marginLeft:"75px"}} src={uri} width="80%" alt="" /><figcaption>QR code</figcaption></figure> : <div />}
 
     {Deploying ? <Loading text="Deploying OTP contract..." /> : <div />}
             {error ? <Alert severity="error" sx={{ textAlign: "left" }}>{errorMsg}</Alert> : <div />}
-            {deployed ? <Typography>Scan the QR code using Google Authenticator</Typography> : <div />}
-            {deployed ? <Typography>SCW Address: {scwAddress}</Typography> : <div />}
-            {deployed ? <Typography>Please send atleast 0.1 ETH to your SCW</Typography> : <div />}
-            {deployed ? <figure><img src={uri} width="100%" alt="" /><figcaption>QR code</figcaption></figure> : <div />}
+            {deployed ? <Typography  style={{
+          display: "block",
+          textAlign: "center",
+          color: "#817499",
+          fontSize: "2rem",
+          fontWeight: "bold",
+          fontFamily: "Montserrat",
+        
+        }}>Scan the Qr code with your Google authenticator app</Typography> : <div />}
+            {deployed ? <Typography style={{
+          display: "block",
+          textAlign: "center",
+          color: "#817499",
+          fontSize: "2rem",
+          fontWeight: "bold",
+          fontFamily: "Montserrat",
+        }}>Your wallet address: {scwAddress}</Typography> : <div />}
+            {/* {deployed ? <Typography style={{
+          display: "block",
+          textAlign: "center",
+          color: "#817499",
+          fontSize: "1rem",
+        }}>Please send atleast 0.1 ETH to your SCW</Typography> : <div />} */}
         
         
         

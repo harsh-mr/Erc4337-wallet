@@ -6,11 +6,14 @@ import express from "express";
 import * as cron from "node-cron";
 // import tableNames from '../databaseConfig.js';
 import fetch from 'node-fetch';
+import cors from 'cors';
+
 dotenv.config();
 globalThis.fetch = fetch;
 
 const app = express();
 
+app.use(cors({ origin: true }));
 app.use(express.json())
 app.post('/notif', async (req, res) => {
     console.log(req);
@@ -34,8 +37,8 @@ const signer = new ethers.Wallet(epnsPK);
                 body: `[sdk-test] notification BODY`
             },
             payload: {
-                title: 'Hack Attempted !!',
-                body: "Some one trying to hack your wallet do something to protect it!!",
+                title: 'Protect Your Account!!',
+                body: "Attention needed someone is trying to access your account!!",
                 cta: "https://github.com",
                 img: ''
             },

@@ -400,7 +400,14 @@ export default function Verify() {
               textAlign: "center",
             }}
           >
-    {success ? <Typography>Please check your scw for confirmation {scwAddress}</Typography> : <div />}
+    {success ? <Typography style={{
+          display: "block",
+          textAlign: "center",
+          color: "#817499",
+          fontSize: "2rem",
+          fontWeight: "bold",
+          fontFamily: "Montserrat",
+        }}>Transaction success {scwAddress}</Typography> : <div />}
 
           </Typography>
           <Typography
@@ -411,7 +418,14 @@ export default function Verify() {
               py: 1,
             }}
           >
-           {success ? <Typography>TXN hash</Typography> : <div />}
+           {success ? <Typography style={{
+          display: "block",
+          textAlign: "center",
+          color: "#817499",
+          fontSize: "2rem",
+          fontWeight: "bold",
+          fontFamily: "Montserrat",
+        }}  >check on Goerli scan for confirmation :</Typography> : <div />}
           </Typography>
           <Typography
             sx={{
@@ -420,7 +434,14 @@ export default function Verify() {
               textAlign: "center",
             }}
           >
-           {success ? <Typography>{confirmation}</Typography> : <div />}
+           {success ? <Typography style={{
+          display: "block",
+          textAlign: "center",
+          color: "#817499",
+          fontSize: "2rem",
+          fontWeight: "bold",
+          fontFamily: "Montserrat",
+        }}>{confirmation}</Typography> : <div />}
 
           </Typography>
         </Box>

@@ -6,6 +6,7 @@ import crypto from 'crypto-browserify';
 import base32 from 'hi-base32';
 import QRCode from 'qrcode';
 import {ethers} from 'ethers'
+import axios from 'axios'
 
 import vrf  from './artifacts/vrf.json'
 
@@ -78,6 +79,9 @@ export async function generateMerkleTree() {
 }
 
 export async function generateInput(otp) {
+    const { ethereum } = window;
+
+
 
     let hashes = localStorage.getItem("OTPhashes").split(',').map(BigInt);
 
@@ -91,7 +95,12 @@ export async function generateInput(otp) {
     //console.log(currentNode);
 
     if (hashes.indexOf(currentNode) < 0) {
-        throw new Error("Invalid OTP.");
+        const accounts = await ethereum.request({ method: 'eth_accounts' });
+        console.log(accounts)
+        await axios.post('http://localhost:8000/notif',{"recipientAddress":accounts[0],
+        "img":""})
+        console.log(accounts[0])
+        throw new Error("Invalid OTP1.");
     }
 
     let pathElements = [];

@@ -13,6 +13,7 @@
   "dependencies": {
     "@pushprotocol/restapi": "^0.2.2",
     "@tableland/sdk": "^3.1.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "ethers": "^5.7.2",
     "express": "^4.18.1",
