@@ -18,6 +18,7 @@ const auth = new AuthProvider(`${appAddress}`, { //required
 }) // required
 const initAuth = async () => {
   await auth.init()
+  await auth.connect();
 }
 try {
   initAuth();
