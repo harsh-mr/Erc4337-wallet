@@ -66,7 +66,7 @@ export default function BasicTabs() {
         >
          
           <Tab style={{ marginLeft: '-6%' }} label={<div style={{display:'flex'}}><span style={{ fontWeight:'bold' ,color: 'rgb(239, 20, 169)',    fontFamily: 'PatsySans'
-    ,fontSize: '228%'}}>ETH</span> <span style={{ fontWeight:'bold' ,color: 'white',    fontFamily: 'PatsySans'
+    ,fontSize: '228%'}}>ZUPP</span> <span style={{ fontWeight:'bold' ,color: 'white',    fontFamily: 'PatsySans'
     ,fontSize: '228%'}}>-Wallet</span> </div>} {...a11yProps(0)} disabled />
           <Tab style={{ marginLeft: '52%' }}label={<span style={{ color: 'white' }}>Deploy wallet</span>} {...a11yProps(1)} />
           <Tab label={<span style={{ color: 'white' }}>Send Funds</span>} {...a11yProps(2)} />

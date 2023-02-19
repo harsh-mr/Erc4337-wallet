@@ -75,7 +75,7 @@ export default function Deploy() {
           textAlign: "center",
         }}
       >
-        Safely <span style={{ color: "#EF14A9" }}>With 2FA Verifcation</span> via your SCW
+        Safely <span style={{ color: "#EF14A9" }}>With 2FA Verification</span> via your SCW
       </Typography>
       <Typography
         sx={{
