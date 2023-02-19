@@ -1,7 +1,7 @@
 {
   "name": "zk-otp",
   "version": "1.0.0",
-  "description": "InfinitoLabs",
+  "description": "Zupp_Wallet",
   "scripts": {
     "compile:contracts": "npx hardhat compile --force",
     "develop": "npx hardhat node",
