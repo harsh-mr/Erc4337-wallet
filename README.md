@@ -1,4 +1,4 @@
-# Zapp Wallet
+# Zupp Wallet
 
 ""Securely Access Your Assets with Unmatched Privacy: Experience Next-Level Protection with our ZKP Based 2FA Account Abstraction Wallet""
 
