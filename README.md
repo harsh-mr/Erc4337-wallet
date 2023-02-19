@@ -23,10 +23,10 @@ we used quicknode rpc to connect bundler with goerli chain.
 The bundler packages a set of these useroperations objects into a single bundle transaction that gets included in the Ethereum chain.
 These bundle transactions are handled by an “Entry point” contract that handles the deployment of the user’s wallets and takes care of User Operation objects verification by querying the deployed wallet.
 
-# Aracana Wallet
+# Arcana Wallet
 "Our application has integrated Arcana wallet for seamless onboarding of users via social login. Additionally, by leveraging Arcana wallet, we have removed the need for external wallets and can now utilize it directly within our web application."
 
-#Push protocol
+# Push protocol
 In essence, if an incorrect OTP is entered, which could suggest potential suspicious activity, we can notify the user through a push protocol so they can take appropriate action.
 
 
