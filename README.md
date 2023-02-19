@@ -36,7 +36,6 @@ In essence, if an incorrect OTP is entered, which could suggest potential suspic
 
 <img width="1440" alt="Screenshot 2023-02-19 at 10 36 51 PM" src="https://user-images.githubusercontent.com/85721026/219967833-d3f30469-3b15-43c1-bcb3-f58c28ea3b8b.png">
 <img width="1440" alt="Screenshot 2023-02-19 at 10 37 01 PM" src="https://user-images.githubusercontent.com/85721026/219967838-8e9c4a5e-a04c-4c96-924f-d8710086aded.png">
-![WhatsApp Image 2023-02-19 at 10 43 16 PM](https://user-images.githubusercontent.com/85721026/219968864-2c1a8ede-1a3c-4905-b73c-0d23d482d9c4.jpeg)
-
+<img width="1440" alt="Screenshot 2023-02-19 at 10 37 17 PM" src="https://user-images.githubusercontent.com/85721026/219968864-2c1a8ede-1a3c-4905-b73c-0d23d482d9c4.jpeg">
 
 <img width="1440" alt="Screenshot 2023-02-19 at 10 37 17 PM" src="https://user-images.githubusercontent.com/85721026/219967846-8e2c4af5-6f9a-4947-8d4f-f5125a52e824.png">
