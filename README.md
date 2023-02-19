@@ -1,6 +1,6 @@
 # Zupp Wallet
 
-""Securely Access Your Assets with Unmatched Privacy: Experience Next-Level Protection with our ZKP Based 2FA Account Abstraction Wallet""
+"Securely Access Your Assets with Unmatched Privacy: Experience Next-Level Protection with our ZKP Based 2FA Account Abstraction Wallet"
 
 problem it solves : Currently, the main obstacle to bringing more people on board with Web3 is the uncertainty
 and fear of losing all assets due to the ease with which transfers can be made just by having
