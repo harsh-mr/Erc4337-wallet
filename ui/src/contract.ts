@@ -25,264 +25,263 @@ const ENTRYPOINT_ADDR = '0x2167fA17BA3c80Adee05D98F0B55b666Be6829d6'
 const MY_WALLET_DEPLOYER = address.MyWalletDeployer
 
 const providerConfig = {
-    entryPointAddress: ENTRYPOINT_ADDR,
-    bundlerUrl: 'http://localhost:80/rpc',
-  }
+  entryPointAddress: ENTRYPOINT_ADDR,
+  bundlerUrl: 'http://localhost:8000/rpc',
+}
 
 export async function connectContract(addr: string) {
-    // const {deploy} = deployments;
-
-    
-
-    const { ethereum } = window;
-
-    let provider = new ethers.providers.Web3Provider(ethereum);
-    let signer = provider.getSigner();
-    let network = await provider.getNetwork();
-
-    console.log('signer: ', await signer.getAddress());
-
-    const entryPoint = EntryPoint__factory.connect(providerConfig.entryPointAddress, provider)
-
-    const MyWalletDeployer = MyWalletDeployer__factory.connect(MY_WALLET_DEPLOYER, signer)
-    const factoryAddress = MyWalletDeployer.address
+  // const {deploy} = deployments;
 
 
-    const ownerAddress = await signer.getAddress();
 
-    const walletAddress = await MyWalletDeployer.getDeploymentAddress(ENTRYPOINT_ADDR, ownerAddress, 0)
+  const { ethereum } = window;
 
-    console.log('--- end deploying MyWalletDeployer contract ---')
+  let provider = new ethers.providers.Web3Provider(ethereum);
+  let signer = provider.getSigner();
+  let network = await provider.getNetwork();
 
-    const myPaymasterApi = new MyPaymasterApi();
+  console.log('signer: ', await signer.getAddress());
 
-    const smartWalletAPI = new MyWalletApi({
-        provider: provider,
-        entryPointAddress: entryPoint.address,
-        walletAddress: walletAddress,
-        owner: signer,
-        factoryAddress: factoryAddress,
-        paymasterAPI: myPaymasterApi
-    })
+  const entryPoint = EntryPoint__factory.connect(providerConfig.entryPointAddress, provider)
 
-    console.log('--- Erc4337EthersProvider initialisation ---')
+  const MyWalletDeployer = MyWalletDeployer__factory.connect(MY_WALLET_DEPLOYER, signer)
+  const factoryAddress = MyWalletDeployer.address
 
-    const httpRpcClient = new HttpRpcClient(providerConfig.bundlerUrl, providerConfig.entryPointAddress, network.chainId)
 
-    const aaProvier = await new ERC4337EthersProvider(network.chainId,
-        providerConfig,
-        signer,
-        provider,
-        httpRpcClient,
-        entryPoint,
-        smartWalletAPI
-      ).init()
+  const ownerAddress = await signer.getAddress();
 
-    const aaSigner = aaProvier.getSigner()
+  const walletAddress = await MyWalletDeployer.getDeploymentAddress(ENTRYPOINT_ADDR, ownerAddress, 0)
 
-    // const scw = new ethers.ContractFactory(MyWallet__factory.abi, MyWallet__factory.bytecode);
+  console.log('--- end deploying MyWalletDeployer contract ---')
 
-    console.log('SCW address: ', await aaSigner.getAddress())
+  const myPaymasterApi = new MyPaymasterApi();
 
-    // const scw = new ethers.Contract(await aaSigner.getAddress(),MyWallet__factory.abi,  aaSigner)
+  const smartWalletAPI = new MyWalletApi({
+    provider: provider,
+    entryPointAddress: entryPoint.address,
+    walletAddress: walletAddress,
+    owner: signer,
+    factoryAddress: factoryAddress,
+    paymasterAPI: myPaymasterApi
+  })
 
-    otp = OTP__factory.connect(addr, signer)
+  console.log('--- Erc4337EthersProvider initialisation ---')
 
-    // otp = new ethers.Contract(addr, OTP.abi, signer);
+  const httpRpcClient = new HttpRpcClient(providerConfig.bundlerUrl, providerConfig.entryPointAddress, network.chainId)
 
-    otp = otp.connect(aaSigner)
+  const aaProvier = await new ERC4337EthersProvider(network.chainId,
+    providerConfig,
+    signer,
+    provider,
+    httpRpcClient,
+    entryPoint,
+    smartWalletAPI
+  ).init()
 
-    console.log("Connect to OTP Contract:", OTP);
+  const aaSigner = aaProvier.getSigner()
+
+  // const scw = new ethers.ContractFactory(MyWallet__factory.abi, MyWallet__factory.bytecode);
+
+  console.log('SCW address: ', await aaSigner.getAddress())
+
+  // const scw = new ethers.Contract(await aaSigner.getAddress(),MyWallet__factory.abi,  aaSigner)
+
+  otp = OTP__factory.connect(addr, signer)
+
+  // otp = new ethers.Contract(addr, OTP.abi, signer);
+
+  otp = otp.connect(aaSigner)
+
+  console.log("Connect to OTP Contract:", OTP);
 }
 
-export async function setRootAndVerifier(smartWalletAPI: MyWalletApi, aaProvier: ERC4337EthersProvider){
+export async function setRootAndVerifier(smartWalletAPI: MyWalletApi, aaProvier: ERC4337EthersProvider) {
 
-    const aaSigner = aaProvier.getSigner()
+  const aaSigner = aaProvier.getSigner()
 
-    const scw = new ethers.ContractFactory(MyWallet__factory.abi, MyWallet__factory.bytecode);
+  const scw = new ethers.ContractFactory(MyWallet__factory.abi, MyWallet__factory.bytecode);
 
-    let root = localStorage.getItem("MerkleRoot");
-    
-    root = root!==null? root: '123'
+  let root = localStorage.getItem("MerkleRoot");
 
-    console.log(`root here: ${root}`)
-    console.log(`data: ${scw.interface.encodeFunctionData('setMerkleRootAndVerifier', [root, address.Verifier])}`)
+  root = root !== null ? root : '123'
 
-    
-    const op = await smartWalletAPI.createSignedUserOp({
-        target: await aaSigner.getAddress(),
-        data: scw.interface.encodeFunctionData('setMerkleRootAndVerifier', [root, address.Verifier])
-    })
-    console.log("op: ")
-    console.log(op)
-    let tx = await aaProvier.httpRpcClient.sendUserOpToBundler(op)
-        
-    console.log(`here`)
-    console.log(tx)
+  console.log(`root here: ${root}`)
+  console.log(`data: ${scw.interface.encodeFunctionData('setMerkleRootAndVerifier', [root, address.Verifier])}`)
+
+
+  const op = await smartWalletAPI.createSignedUserOp({
+    target: await aaSigner.getAddress(),
+    data: scw.interface.encodeFunctionData('setMerkleRootAndVerifier', [root, address.Verifier])
+  })
+  console.log("op: ")
+  console.log(op)
+  let tx = await aaProvier.httpRpcClient.sendUserOpToBundler(op)
+
+  console.log(`here`)
+  console.log(tx)
 }
 
-export async function getAaParams()
-{
+export async function getAaParams() {
 
-    const { ethereum } = window;
+  const { ethereum } = window;
 
-    let provider = new ethers.providers.Web3Provider(ethereum);
-    let signer = provider.getSigner();
-    let network = await provider.getNetwork();
+  let provider = new ethers.providers.Web3Provider(ethereum);
+  let signer = provider.getSigner();
+  let network = await provider.getNetwork();
 
-    console.log('signer: ', await signer.getAddress());
+  console.log('signer: ', await signer.getAddress());
 
-    const entryPoint = EntryPoint__factory.connect(providerConfig.entryPointAddress, provider)
+  const entryPoint = EntryPoint__factory.connect(providerConfig.entryPointAddress, provider)
 
-    const MyWalletDeployer = MyWalletDeployer__factory.connect(MY_WALLET_DEPLOYER, signer)
-    const factoryAddress = MyWalletDeployer.address
+  const MyWalletDeployer = MyWalletDeployer__factory.connect(MY_WALLET_DEPLOYER, signer)
+  const factoryAddress = MyWalletDeployer.address
 
 
-    const ownerAddress = await signer.getAddress();
+  const ownerAddress = await signer.getAddress();
 
-    const walletAddress = await MyWalletDeployer.getDeploymentAddress(ENTRYPOINT_ADDR, ownerAddress, 0)
+  const walletAddress = await MyWalletDeployer.getDeploymentAddress(ENTRYPOINT_ADDR, ownerAddress, 0)
 
-    console.log('--- end deploying MyWalletDeployer contract ---')
+  console.log('--- end deploying MyWalletDeployer contract ---')
 
-    const myPaymasterApi = new MyPaymasterApi();
+  const myPaymasterApi = new MyPaymasterApi();
 
-    const smartWalletAPI = new MyWalletApi({
-        provider: provider,
-        entryPointAddress: entryPoint.address,
-        walletAddress: walletAddress,
-        owner: signer,
-        factoryAddress: factoryAddress,
-        paymasterAPI: myPaymasterApi
-    })
-    console.log('--- Erc4337EthersProvider initialisation ---')
+  const smartWalletAPI = new MyWalletApi({
+    provider: provider,
+    entryPointAddress: entryPoint.address,
+    walletAddress: walletAddress,
+    owner: signer,
+    factoryAddress: factoryAddress,
+    paymasterAPI: myPaymasterApi
+  })
+  console.log('--- Erc4337EthersProvider initialisation ---')
 
-    const httpRpcClient = new HttpRpcClient(providerConfig.bundlerUrl, providerConfig.entryPointAddress, network.chainId)
+  const httpRpcClient = new HttpRpcClient(providerConfig.bundlerUrl, providerConfig.entryPointAddress, network.chainId)
 
-    const aaProvier = await new ERC4337EthersProvider(network.chainId,
-        providerConfig,
-        signer,
-        provider,
-        httpRpcClient,
-        entryPoint,
-        smartWalletAPI
-      ).init()
+  const aaProvier = await new ERC4337EthersProvider(network.chainId,
+    providerConfig,
+    signer,
+    provider,
+    httpRpcClient,
+    entryPoint,
+    smartWalletAPI
+  ).init()
 
-    const aaSigner = aaProvier.getSigner()
+  const aaSigner = aaProvier.getSigner()
 
-    return {smartWalletAPI, httpRpcClient, aaProvier}
+  return { smartWalletAPI, httpRpcClient, aaProvier }
 }
 export async function connectFactory() {
-    const { ethereum } = window;
+  const { ethereum } = window;
 
-    let provider = new ethers.providers.Web3Provider(ethereum);
-    let signer = provider.getSigner();
-    console.log('signer: ', await signer.getAddress());
+  let provider = new ethers.providers.Web3Provider(ethereum);
+  let signer = provider.getSigner();
+  console.log('signer: ', await signer.getAddress());
 
-    
 
-    factory = new ethers.Contract(address['OTPFactory'], OTPFactory.abi, signer);
 
-    console.log("Connect to OTPFactory Contract:", OTPFactory);
+  factory = new ethers.Contract(address['OTPFactory'], OTPFactory.abi, signer);
+
+  console.log("Connect to OTPFactory Contract:", OTPFactory);
 }
 
 export async function deployOTP(root: BigInt) {
-    await connectFactory();
+  await connectFactory();
 
-    let Tx = await factory.createOTP(address['Verifier'], root);
-    let tx = await Tx.wait();
-    console.log(tx)
-    let deployedAddress = tx.events[0].args.newAddress;
+  let Tx = await factory.createOTP(address['Verifier'], root);
+  let tx = await Tx.wait();
+  console.log(tx)
+  let deployedAddress = tx.events[0].args.newAddress;
 
-    localStorage.setItem("OTPaddress", deployedAddress);
+  localStorage.setItem("OTPaddress", deployedAddress);
 
-    return deployedAddress;
+  return deployedAddress;
 }
 
 export async function naiveProof(input: Object, amount: string, recepient: string) {
-    
-    // let {smartWalletAPI, httpRpcClient, aaProvier} = await getAaParams();
-    // const aaSigner = aaProvier.getSigner()
 
-    // const scw = new ethers.ContractFactory(MyWallet__factory.abi, MyWallet__factory.bytecode);
-    if (localStorage.getItem('OTPaddress')) {
-        console.log(`local OTP contract address`)
-        console.log(localStorage.getItem('OTPaddress'));
-        await connectContract(localStorage.getItem('OTPaddress')!);
-    } else {
-        throw new Error("No OTP contract address found. Deploy first.");
-    }
-    console.log(`amount: ${amount} recepient: ${recepient}`)
-    let calldata = await generateCalldata(input);
-    console.log("calldata")
-    console.log(calldata)
-    let tx;
+  // let {smartWalletAPI, httpRpcClient, aaProvier} = await getAaParams();
+  // const aaSigner = aaProvier.getSigner()
 
-    if (calldata) {
-        console.log(otp.address)
-        console.log(`recepient: ${recepient} amount: ${amount}`)
+  // const scw = new ethers.ContractFactory(MyWallet__factory.abi, MyWallet__factory.bytecode);
+  if (localStorage.getItem('OTPaddress')) {
+    console.log(`local OTP contract address`)
+    console.log(localStorage.getItem('OTPaddress'));
+    await connectContract(localStorage.getItem('OTPaddress')!);
+  } else {
+    throw new Error("No OTP contract address found. Deploy first.");
+  }
+  console.log(`amount: ${amount} recepient: ${recepient}`)
+  let calldata = await generateCalldata(input);
+  console.log("calldata")
+  console.log(calldata)
+  let tx;
 
-        // const nonce = await smartWalletAPI.getNonce();
-        // console.log(`nonce: `)
-        // console.log(`${nonce}`)
-        // const op = await smartWalletAPI.createSignedUserOp({
-        //     target: await aaSigner.getAddress(),
-        //     data: scw.interface.encodeFunctionData('transfer', [recepient, ethers.utils.parseEther(amount)])
-        // })
+  if (calldata) {
+    console.log(otp.address)
+    console.log(`recepient: ${recepient} amount: ${amount}`)
 
-        // console.log(`User Operation`)
-        // console.log(op)
-    
-        // tx = await aaProvier.httpRpcClient.sendUserOpToBundler(op)
-            
-        // console.log(`here`)
-        // console.log(tx)
-        tx = await otp.naiveApproval(calldata[0], calldata[1], calldata[2], calldata[3], recepient, {value: ethers.utils.parseEther(amount)})
-            .catch((error: any) => {
-                console.log(error);
-                let errorMsg;
-                if (error.reason) {
-                    errorMsg = error.reason;
-                } else if (error.data.message) {
-                    errorMsg = error.data.message;
-                } else {
-                    errorMsg = "Unknown error."
-                }
-                throw errorMsg;
-            });
-    } else {
-        throw new Error("Witness generation failed.");
-    }
-    return tx;
+    // const nonce = await smartWalletAPI.getNonce();
+    // console.log(`nonce: `)
+    // console.log(`${nonce}`)
+    // const op = await smartWalletAPI.createSignedUserOp({
+    //     target: await aaSigner.getAddress(),
+    //     data: scw.interface.encodeFunctionData('transfer', [recepient, ethers.utils.parseEther(amount)])
+    // })
+
+    // console.log(`User Operation`)
+    // console.log(op)
+
+    // tx = await aaProvier.httpRpcClient.sendUserOpToBundler(op)
+
+    // console.log(`here`)
+    // console.log(tx)
+    tx = await otp.naiveApproval(calldata[0], calldata[1], calldata[2], calldata[3], recepient, { value: ethers.utils.parseEther(amount) })
+      .catch((error: any) => {
+        console.log(error);
+        let errorMsg;
+        if (error.reason) {
+          errorMsg = error.reason;
+        } else if (error.data.message) {
+          errorMsg = error.data.message;
+        } else {
+          errorMsg = "Unknown error."
+        }
+        throw errorMsg;
+      });
+  } else {
+    throw new Error("Witness generation failed.");
+  }
+  return tx;
 }
 
 export async function blockTimestampProof(input: Object) {
 
-    if (localStorage.getItem('OTPaddress')) {
-        console.log(localStorage.getItem('OTPaddress'));
-        await connectContract(localStorage.getItem('OTPaddress')!);
-    } else {
-        throw new Error("No OTP contract address found. Deploy first.");
-    }
+  if (localStorage.getItem('OTPaddress')) {
+    console.log(localStorage.getItem('OTPaddress'));
+    await connectContract(localStorage.getItem('OTPaddress')!);
+  } else {
+    throw new Error("No OTP contract address found. Deploy first.");
+  }
 
-    let calldata = await generateCalldata(input);
-    let tx;
+  let calldata = await generateCalldata(input);
+  let tx;
 
-    if (calldata) {
-        tx = await otp.blockApproval(calldata[0], calldata[1], calldata[2], calldata[3])
-            .catch((error: any) => {
-                console.log(error);
-                let errorMsg;
-                if (error.reason) {
-                    errorMsg = error.reason;
-                } else if (error.data.message) {
-                    errorMsg = error.data.message;
-                } else {
-                    errorMsg = "Unknown error."
-                }
-                throw errorMsg;
-            });
-    } else {
-        throw new Error("Witness generation failed.");
-    }
-    return tx;
+  if (calldata) {
+    tx = await otp.blockApproval(calldata[0], calldata[1], calldata[2], calldata[3])
+      .catch((error: any) => {
+        console.log(error);
+        let errorMsg;
+        if (error.reason) {
+          errorMsg = error.reason;
+        } else if (error.data.message) {
+          errorMsg = error.data.message;
+        } else {
+          errorMsg = "Unknown error."
+        }
+        throw errorMsg;
+      });
+  } else {
+    throw new Error("Witness generation failed.");
+  }
+  return tx;
 }
