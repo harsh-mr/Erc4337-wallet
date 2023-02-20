@@ -1,7 +1,7 @@
 {
   "name": "zk-otp",
   "version": "1.0.0",
-  "description": "Zapp Wallet",
+  "description": "Zupp_Wallet",
   "scripts": {
     "compile:contracts": "npx hardhat compile --force",
     "develop": "npx hardhat node",
